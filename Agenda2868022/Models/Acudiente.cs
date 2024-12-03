@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace Agenda2868022.Models
 {
-    public class Aprendiz
+    public class Acudiente
     {
         [Key]
-        public int AprendizId { get; set; }
+        [Display(Name ="Id")]
+        public int AcudienteId { get; set; }
 
         [Required(ErrorMessage = "El campo {0}, es obligatorio")]
         [StringLength(20, MinimumLength = 5,
@@ -27,17 +28,13 @@ namespace Agenda2868022.Models
         [StringLength(30, MinimumLength = 3,
             ErrorMessage = "El campo {0} debe tener entre {2} y {1} caracteres")]
         public string Apellidos { get; set; }
-
-        [Required(ErrorMessage = "El campo {0}, es obligatorio")]
-        [StringLength(10, MinimumLength = 5,
-            ErrorMessage = "El campo {0} debe tener entre {2} y {1} caracteres")]
-        public string Genero { get; set; }
+        
 
         [Required(ErrorMessage = "El campo {0}, es obligatorio")]
         [StringLength(10, MinimumLength = 10,
             ErrorMessage = "El campo {0} debe tener entre {2} y {1} caracteres")]
         [Range(3000000000, 3999999999,
-            ErrorMessage ="El campo {0} debe estar entre {1} y {2}")]
+            ErrorMessage = "El campo {0} debe estar entre {1} y {2}")]
         [Index("IndexCelular", IsUnique = true)]
         public string Celular { get; set; }
 
@@ -48,20 +45,17 @@ namespace Agenda2868022.Models
         [Index("IndexCorreo", IsUnique = true)]
         public string Correo { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime FechaNacimiento { get; set; }
-
-        //Relacion con ficha       
-        public int FichaId { get; set; }
-        public virtual Ficha Ficha { get; set; }
-
-        //Relacion con Acudiente
         [Required(ErrorMessage = "El campo {0}, es obligatorio")]
-        [Index("IndexAcudiente", IsUnique = true)]//relacion uno a uno
-        public int AcudienteId { get; set; }
-        public virtual Acudiente Acudiente { get; set; }
+        [StringLength(30, MinimumLength = 5,
+            ErrorMessage = "El campo {0} debe tener entre {2} y {1} caracteres")]
+        public string Direccion { get; set; }
 
+        //Atributo de solo lectura
+        public string FullName { get { return this.Nombres + " " + this.Apellidos; }  }
 
+        //Relacion con Aprendiz
+        public virtual ICollection<Aprendiz> Aprendizs { get; set; }
+
+       
     }
 }

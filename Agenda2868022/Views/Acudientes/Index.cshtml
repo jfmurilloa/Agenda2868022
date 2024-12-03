@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Agenda2868022.Models.Acudiente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index Acudiente</h2>
+
+<p>
+    @Html.ActionLink("Crear Acudiente","Create", new { }, new { @class = "btn btn-success" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AcudienteId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+    </tr>
+    @foreach(var item in Model) { 
+        <tr>
+            <td>
+                @Html.DisplayFor(itemM => item.AcudienteId)
+            </td>
+            <td>
+                @Html.DisplayFor(itemM => item.Documento)
+            </td>
+            <td>
+                @Html.DisplayFor(itemM => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(itemM => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(itemM => item.Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(itemM => item.Celular)
+            </td>
+            <td>
+                @Html.DisplayFor(itemM => item.Direccion)
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -18,6 +18,7 @@ namespace Agenda2868022.Models
         public DbSet<Ficha> Fichas { get; set; }
         public DbSet<Aprendiz> Aprendizes { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Acudiente> Acudientes { get; set; }
 
     }
 }

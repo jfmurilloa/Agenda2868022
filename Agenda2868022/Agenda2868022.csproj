@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AcudientesController.cs" />
     <Compile Include="Controllers\AprendizesController.cs" />
     <Compile Include="Controllers\FichasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +180,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Acudiente.cs" />
     <Compile Include="Models\Agenda2868022Context.cs" />
     <Compile Include="Models\Aprendiz.cs" />
     <Compile Include="Models\Ficha.cs" />
@@ -274,6 +276,8 @@
     <Content Include="Views\Instructors\Edit.cshtml" />
     <Content Include="Views\Instructors\Details.cshtml" />
     <Content Include="Views\Instructors\Delete.cshtml" />
+    <Content Include="Views\Acudientes\Index.cshtml" />
+    <Content Include="Views\Acudientes\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

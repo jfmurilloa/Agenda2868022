@@ -16,13 +16,14 @@ namespace Agenda2868022.Controllers
         public ActionResult Index()
         {
             //Recuperar la relación con ficha
-            var aprendiz = db.Aprendizes.Include(a => a.Ficha);            
+            var aprendiz = db.Aprendizes.Include(a => a.Ficha).Include(a => a.Acudiente);            
             return View(db.Aprendizes.ToList());
         }
         [HttpGet]
         public ActionResult Create()
         {
             ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo");
+            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName");
             ViewBag.Genero = ObtenerGenero();
             return View();
         }
@@ -60,10 +61,12 @@ namespace Agenda2868022.Controllers
                     }                   
                     ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo",aprendiz.FichaId);
                     ViewBag.Genero = ObtenerGenero();
+                    ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName");
                     return View(aprendiz);
                 }
             }
             ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo", aprendiz.FichaId);
+            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName");
             ViewBag.Genero = ObtenerGenero();
             return View(aprendiz);
         }
@@ -73,7 +76,9 @@ namespace Agenda2868022.Controllers
         {
             Aprendiz aprendiz = db.Aprendizes.Find(id);
             ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo",aprendiz.FichaId);
+            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName", aprendiz.AcudienteId);
             ViewBag.Genero = ObtenerGenero();
+            
             return View(aprendiz);
         }
         [HttpPost]
@@ -110,10 +115,12 @@ namespace Agenda2868022.Controllers
                     }
                     ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo", aprendiz.FichaId);
                     ViewBag.Genero = ObtenerGenero();
+                    ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName", aprendiz.AcudienteId);
                     return View(aprendiz);
                 }
             }
             ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo", aprendiz.FichaId);
+            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName", aprendiz.AcudienteId);
             ViewBag.Genero = ObtenerGenero();
             return View(aprendiz);
         }
@@ -130,6 +137,7 @@ namespace Agenda2868022.Controllers
         {
             Aprendiz aprendiz = db.Aprendizes.Find(id);
             ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo", aprendiz.FichaId);
+            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName", aprendiz.AcudienteId);
             return View(aprendiz);
         }
 
