@@ -135,6 +135,48 @@ namespace Agenda2868022.Controllers
             
         }
 
+        [HttpGet]
+        public ActionResult AddInstructor(int fichaId)
+        {
+            ViewBag.InstructorId = new SelectList(db.Instructors.OrderBy(
+                i => i.Nombres), "InstructorId", "FullName");
+
+            var FichaInst = new FichaInstructorView
+            {
+                FichaId= fichaId,
+            };
+            return View(FichaInst);
+        }
+
+        [HttpPost]
+        public ActionResult AddInstructor(FichaInstructorView fichaInst)
+        {
+            ViewBag.InstructorId = new SelectList(db.Instructors.OrderBy(
+                i => i.Nombres), "InstructorId", "FullName");
+
+            //verificar si el instructor esta en la ficha
+            var instFicha= db.FichaInstructors.Where(fi => fi.FichaId== fichaInst.FichaId
+              && fi.InstructorId== fichaInst.InstructorId).FirstOrDefault();
+
+            if (instFicha != null)
+            {
+                ViewBag.Error = "El instructor ya está vinculado a la ficha";
+            }
+            else
+            {
+                instFicha = new FichaInstructor
+                {
+                    FichaId=fichaInst.FichaId,
+                    InstructorId=fichaInst.InstructorId
+                };
+                db.FichaInstructors.Add(instFicha);
+                db.SaveChanges();
+                return RedirectToAction(string.Format("Details/{0}", fichaInst.FichaId));                    
+            }
+            return View(fichaInst);
+
+        }
+
         //liberar la conexión con la base de datos
         protected override void Dispose(bool disposing)
         {

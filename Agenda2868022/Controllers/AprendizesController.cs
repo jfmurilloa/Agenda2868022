@@ -61,12 +61,12 @@ namespace Agenda2868022.Controllers
                     }                   
                     ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo",aprendiz.FichaId);
                     ViewBag.Genero = ObtenerGenero();
-                    ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName");
+                    ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName",aprendiz.AcudienteId);
                     return View(aprendiz);
                 }
             }
             ViewBag.FichaId = new SelectList(db.Fichas, "FichaId", "Codigo", aprendiz.FichaId);
-            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName");
+            ViewBag.AcudienteId = new SelectList(db.Acudientes, "AcudienteId", "FullName",aprendiz.AcudienteId);
             ViewBag.Genero = ObtenerGenero();
             return View(aprendiz);
         }

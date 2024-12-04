@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Agenda2868022.Models
 {
-    public class Agenda2868022Context:DbContext
+    public class Agenda2868022Context : DbContext
     {
         //Metodo constructor
-        public Agenda2868022Context() :base("DefaultConnection")
-        { 
+        public Agenda2868022Context() : base("DefaultConnection")
+        {
             //cuerpo del constructor
         }
 
@@ -19,6 +19,7 @@ namespace Agenda2868022.Models
         public DbSet<Aprendiz> Aprendizes { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Acudiente> Acudientes { get; set; }
+        public DbSet<FichaInstructor> FichaInstructors { get;set; }
 
     }
 }

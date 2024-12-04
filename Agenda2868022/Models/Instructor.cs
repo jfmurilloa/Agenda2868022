@@ -49,7 +49,10 @@ namespace Agenda2868022.Models
             ErrorMessage = "El campo {0} debe tener entre {2} y {1} caracteres")]
         public string Profesion { get; set; }
 
+        public string FullName { get { return this.Nombres + " " + this.Apellidos; } }
 
+        //Relacion con FichaInstructor
+        public virtual ICollection<FichaInstructor> FichaInstructors { get; set; }
 
     }
 }
