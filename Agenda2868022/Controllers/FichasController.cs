@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Agenda2868022.Controllers
 {
@@ -108,7 +109,18 @@ namespace Agenda2868022.Controllers
         public ActionResult Details(int? id)
         {
             Ficha ficha= db.Fichas.Find(id);
-            return View(ficha);
+
+            var view = new FichaDetailsView
+            {
+                FichaId= ficha.FichaId,
+                Codigo= ficha.Codigo,
+                Programa= ficha.Programa,
+                FechaInicio= ficha.FechaInicio,
+                FechaFin= ficha.FechaFin,
+                FichaInstructors = ficha.FichaInstructors.ToList(),
+            };
+
+            return View(view);
             
         }
         [HttpGet]
@@ -175,6 +187,17 @@ namespace Agenda2868022.Controllers
             }
             return View(fichaInst);
 
+        }
+
+        public ActionResult DeleteInstructor(int id)
+        {
+            var instructor = db.FichaInstructors.Find(id);
+            if (instructor != null) 
+            {
+                db.FichaInstructors.Remove(instructor);
+                db.SaveChanges();
+            }
+            return RedirectToAction(string.Format("Details/{0}", instructor.FichaId));
         }
 
         //liberar la conexión con la base de datos

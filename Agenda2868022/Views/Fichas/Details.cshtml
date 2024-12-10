@@ -1,4 +1,4 @@
-﻿@model Agenda2868022.Models.Ficha
+﻿@model Agenda2868022.Models.FichaDetailsView
 
 @{
     ViewBag.Title = "Details";
@@ -49,3 +49,40 @@
     @Html.ActionLink("Adicionar Instructor", "AddInstructor", new { fichaId = Model.FichaId }, new { @class = "btn btn-success" })
     @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary" })
 </p>
+
+<h3>Instructores</h3>
+@if(Model.FichaInstructors.Count == 0)
+{
+    <h3>Aun no hay instructores registrados en la ficha</h3>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model.FichaInstructors[0].Instructor.Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.FichaInstructors[0].Instructor.FullName)
+            </th>
+        </tr>
+        @for(int i=0;i <Model.FichaInstructors.Count;i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.FichaInstructors[i].Instructor.Documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.FichaInstructors[i].Instructor.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete","DeleteInstructor",
+                    new {id= Model.FichaInstructors[i].FichaInstructorId },
+                    new {@class="btn btn-danger",onclick="return confirm('Esta seguro de eliminar el registro?')"})
+                </td>
+            </tr>
+        }
+
+    </table>
+    
+}
